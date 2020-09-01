@@ -2,6 +2,7 @@ import React from 'react';
 
 import './Navbar.styles.scss';
 import { ReactComponent as Logo } from '../../assets/icons/github-logo.svg';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
 	return (
@@ -11,10 +12,13 @@ const Navbar = () => {
 					<div className="github-text">Github Search</div>
 					<Logo className="github-logo" />
 				</div>
-
 				<div className="links-container">
-					<span className="links">Home</span>
-					<span className="links">Favorites</span>
+					<Link className="links" to="/">
+						Home
+					</Link>
+					<Link className="links" to="/favorites">
+						Favorites
+					</Link>
 				</div>
 			</div>
 		</nav>
