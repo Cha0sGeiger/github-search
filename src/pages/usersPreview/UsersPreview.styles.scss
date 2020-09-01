@@ -1,0 +1,18 @@
+@import "../../style/_variables.scss";
+
+.user-preview {
+    width: 300px;
+    display: flex;
+    justify-content: center;
+
+    .profile-image {
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+    }
+
+    .link {
+        margin-left: 20px;
+        color: black;
+    }
+}
