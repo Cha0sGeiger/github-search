@@ -11,8 +11,18 @@
 		height: 100%;
 		display: flex;
 		justify-content: space-between;
-		.github-icon {
+		.github-text {
 			margin: auto 0;
+			text-transform: uppercase;
+			margin-right: 35px;
+		}
+		.github-logo {
+			height: 40px;
+			width: 40px;
+			margin: auto 0;
+		}
+		.logo-container {
+			display: flex;
 		}
 		.links-container {
 			margin: auto 0;
