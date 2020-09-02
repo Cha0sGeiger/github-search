@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import './UsersPreview.styles.scss';
 import SearchInput from '../../components/search-input/Search.input';
+import CustomButton from '../../components/button/CustomButton';
 
 const users = [
 	{
@@ -62,6 +63,9 @@ class UsersPreview extends Component {
 								label="Search for User"
 							/>
 						</form>
+						<div className="button">
+							<CustomButton type="primary">Search</CustomButton>
+						</div>
 					</div>
 					<div className="users-container">
 						{users.map(({ id, login, avatar_url, html_url }) => (
