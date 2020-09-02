@@ -3,8 +3,9 @@ import React, { Component } from 'react';
 import './UsersPreview.styles.scss';
 import SearchInput from '../../components/search-input/Search.input';
 import CustomButton from '../../components/button/CustomButton';
+import UserCard from '../../components/user-card/UserCard';
 
-const users = [
+/* const users = [
 	{
 		id: 1,
 		login: 'mojombo',
@@ -35,10 +36,18 @@ const users = [
 		avatar_url: 'https://avatars0.githubusercontent.com/u/2?v=4',
 		html_url: 'https://github.com/defunkt'
 	}
-];
+]; */
 
 interface SearchProps {
+	users: Array<UserProps>;
 	searchForUser: any;
+}
+
+interface UserProps {
+	id: number;
+	login: string;
+	avatar_url: string;
+	html_url: string;
 }
 class UsersPreview extends Component<SearchProps> {
 	state = {
@@ -58,6 +67,9 @@ class UsersPreview extends Component<SearchProps> {
 	};
 
 	render() {
+		console.log(this.props.users);
+		/* const {id, login, avatar_url, html_url} = this.props; */
+
 		return (
 			<div className="container">
 				<div className="user-preview">
@@ -78,14 +90,8 @@ class UsersPreview extends Component<SearchProps> {
 						</div>
 					</div>
 					<div className="users-container">
-						{users.map(({ id, login, avatar_url, html_url }) => (
-							<div className="user-profile" key={id}>
-								<img className="profile-image" src={avatar_url} alt="user" />
-								<span>{login}</span>
-								<a href={html_url} className="link">
-									Github
-								</a>
-							</div>
+						{this.props.users.map(({ id, login, avatar_url, html_url }) => (
+							<UserCard key={id} login={login} avatar_url={avatar_url} html_url={html_url} />
 						))}
 					</div>
 				</div>

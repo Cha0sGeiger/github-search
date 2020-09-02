@@ -1,7 +1,7 @@
 @import "../../style/_variables.scss";
 
 .user-preview {
-    width: 1200px;
+    width: 1260px;
     display: block;
     margin: 0 auto;
 
@@ -20,24 +20,7 @@
 
     .users-container {
         display: flex;
-        flex-basis: 1;
-        flex-flow: row;
-        .user-profile {
-            display: flex;
-            flex-flow: column;
-            align-items: center;
-            width: 300px;
-        }
-    }
-
-    .profile-image {
-        border-radius: 50%;
-        width: 120px;
-        height: 120px;
-    }
-
-    .link {
-        margin-left: 20px;
-        color: black;
+        flex-wrap: wrap;
+        padding-left: 0;
     }
 }

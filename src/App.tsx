@@ -7,7 +7,7 @@ import Navbar from './components/navbar/Navbar';
 import UsersPreview from './pages/usersPreview/UsersPreview';
 
 interface Users {
-	users: object[];
+	users: Array<any>;
 }
 
 class App extends Component {
@@ -28,8 +28,6 @@ class App extends Component {
 		await getUsers(value).then((users) => {
 			this.setState({ users: users.data.items });
 		});
-
-		console.log(this.state.users);
 	};
 
 	render() {
@@ -37,7 +35,11 @@ class App extends Component {
 			<div className="App">
 				<Navbar />
 				<Switch>
-					<Route exact path="/" component={() => <UsersPreview searchForUser={this.searchForUser} />} />
+					<Route
+						exact
+						path="/"
+						component={() => <UsersPreview users={this.state.users} searchForUser={this.searchForUser} />}
+					/>
 				</Switch>
 			</div>
 		);
