@@ -37,14 +37,22 @@ const users = [
 	}
 ];
 
-class UsersPreview extends Component {
+interface SearchProps {
+	searchForUser: any;
+}
+class UsersPreview extends Component<SearchProps> {
 	state = {
 		search: ''
 	};
 
+	handleSubmit = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
+		event.preventDefault();
+		this.props.searchForUser(this.state.search);
+		this.setState({ search: '' });
+	};
+
 	handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
 		const { value, name } = event.target;
-		console.log(event.target.value, 'event', this.state.search, 'state');
 
 		this.setState({ [name]: value });
 	};
@@ -64,7 +72,9 @@ class UsersPreview extends Component {
 							/>
 						</form>
 						<div className="button">
-							<CustomButton type="primary">Search</CustomButton>
+							<CustomButton onClick={this.handleSubmit} type="primary">
+								Search
+							</CustomButton>
 						</div>
 					</div>
 					<div className="users-container">

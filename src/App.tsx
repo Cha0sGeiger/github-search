@@ -15,20 +15,29 @@ class App extends Component {
 		users: []
 	};
 
-	/* async componentDidMount() {
+	/* 	async componentDidMount() {
 		await getUsers().then((users) => {
 			this.setState({ users: users.data });
-		}); */
+		});
 
-	/* 	console.log(this.state.users); */
-	/* 	} */
+		console.log(this.state.users);
+	} */
+
+	searchForUser = async (value: string) => {
+		console.log(value, 'value');
+		await getUsers(value).then((users) => {
+			this.setState({ users: users.data.items });
+		});
+
+		console.log(this.state.users);
+	};
 
 	render() {
 		return (
 			<div className="App">
 				<Navbar />
 				<Switch>
-					<Route exact path="/" component={UsersPreview} />
+					<Route exact path="/" component={() => <UsersPreview searchForUser={this.searchForUser} />} />
 				</Switch>
 			</div>
 		);
