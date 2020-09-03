@@ -9,7 +9,7 @@ import UserProfile from './components/user-profile/UserProfile';
 
 interface Users {
 	users: Array<any>;
-	user: object;
+	user: any;
 }
 
 class App extends Component {
@@ -35,6 +35,7 @@ class App extends Component {
 		await getSingleUser(username).then((user) => {
 			this.setState({ user: user.data });
 		});
+		console.log(this.state.user, 'user u tsx');
 	};
 
 	render() {
@@ -48,7 +49,11 @@ class App extends Component {
 						path="/"
 						component={() => <UsersPreview users={users} searchForUsers={this.searchForUsers} />}
 					/>
-					<Route exact path="/user/:login" render={(props) => <UserProfile {...props} />} />
+					<Route
+						exact
+						path="/user/:login"
+						render={(props) => <UserProfile {...props} user={user} getSingleUser={this.getSingleUser} />}
+					/>
 				</Switch>
 			</div>
 		);
