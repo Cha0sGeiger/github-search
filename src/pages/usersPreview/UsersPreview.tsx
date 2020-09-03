@@ -40,7 +40,7 @@ import UserCard from '../../components/user-card/UserCard';
 
 interface SearchProps {
 	users: Array<UserProps>;
-	searchForUser: any;
+	searchForUsers: any;
 }
 
 interface UserProps {
@@ -56,7 +56,7 @@ class UsersPreview extends Component<SearchProps> {
 
 	handleSubmit = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
 		event.preventDefault();
-		this.props.searchForUser(this.state.search);
+		this.props.searchForUsers(this.state.search);
 		this.setState({ search: '' });
 	};
 

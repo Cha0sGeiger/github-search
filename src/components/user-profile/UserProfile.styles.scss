@@ -1,0 +1,27 @@
+@import "../../style/_variables.scss";
+
+.profile-container {
+    display: flex;
+    justify-content: space-evenly;
+    .user {
+        display: block;
+        border-right: 2px solid gray;
+        width: 50%;
+    }
+    .repos-container {
+        display: block;
+        width: 50%;
+        .information {
+            padding: 5px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid gray;
+        }
+        .repos-list {
+            display: block;
+            a {
+                font-size: 1.1rem;
+                font-weight: 500;
+            }
+        }
+    }
+}
