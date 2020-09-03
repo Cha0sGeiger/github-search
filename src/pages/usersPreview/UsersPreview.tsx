@@ -4,6 +4,7 @@ import './UsersPreview.styles.scss';
 import SearchInput from '../../components/search-input/Search.input';
 import CustomButton from '../../components/button/CustomButton';
 import UserCard from '../../components/user-card/UserCard';
+import GithubSearch from '../../assets/icons/github-search.png';
 
 /* const users = [
 	{
@@ -93,6 +94,7 @@ class UsersPreview extends Component<SearchProps> {
 						{this.props.users.map(({ id, login, avatar_url, html_url }) => (
 							<UserCard key={id} login={login} avatar_url={avatar_url} html_url={html_url} />
 						))}
+						{/* {this.props.users.length > 0 ? null : <img src={GithubSearch} />} */}
 					</div>
 				</div>
 			</div>

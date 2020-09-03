@@ -1,0 +1,165 @@
+@import "../../style/_variables.scss";
+
+.profile-container {
+    padding: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    width: 1200px;
+    .user {
+        display: block;
+        width: 50%;
+        .image-container {
+            padding-top: 30px;
+            text-align: center;
+            img {
+                width: 200px;
+                height: 200px;
+                border-radius: 50%;
+                border: 3px solid #fc8d59;
+            }
+        }
+
+        h4 {
+            font-family: "Molengo";
+            font-size: 1.5rem;
+            color: gray;
+            text-align: center;
+        }
+        h5 {
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.33;
+            text-align: center;
+        }
+        p {
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        .following-information-container {
+            display: flex;
+            justify-content: center;
+            p {
+                margin: 10px;
+            }
+        }
+        .button-container {
+            padding-top: 25px;
+            display: flex;
+            justify-content: center;
+        }
+    }
+    .repos-wrapper {
+        width: 50%;
+        display: flex;
+        flex-flow: column;
+        .repos-container {
+            display: flex;
+            flex-flow: column;
+            width: 100%;
+            height: 720px;
+            overflow-x: scroll;
+
+            .information {
+                padding: 20px 5px 5px 10px;
+                margin-bottom: 20px;
+                border-bottom: 1px solid gray;
+                h4 {
+                    color: #001f3f;
+                    font-size: 0.9rem;
+                    text-transform: uppercase;
+                    margin-left: 15px;
+                }
+                p {
+                    font-size: 1.1rem;
+                    letter-spacing: 1.5px;
+                    font-family: "Molengo";
+                }
+            }
+            .repos-list {
+                display: block;
+                .repo-heading {
+                    display: flex;
+                    justify-content: space-between;
+                }
+                .repo-item {
+                    border-bottom: 1px solid gray;
+                    padding-bottom: 14px;
+                    h2 {
+                        margin-left: 15px;
+                    }
+                    p {
+                        margin-left: 15px;
+                    }
+                    .dot {
+                        margin-left: 15px;
+                        margin: auto 0 auto 15px;
+                        height: 12px;
+                        width: 12px;
+                        background-color: #f1e05b;
+                        border-radius: 50%;
+                    }
+                }
+                h4 {
+                    margin-left: 15px;
+                    text-transform: uppercase;
+                    font-size: 0.9rem;
+                    color: #001f3f;
+                }
+            }
+        }
+        .repos-container::-webkit-scrollbar {
+            width: 0 !important;
+        }
+        .repos-container {
+            overflow: -moz-scrollbars-none;
+        }
+        .repos-container {
+            -ms-overflow-style: none;
+        }
+        .scroll-box {
+            margin: 0 auto;
+            padding-top: 30px;
+            font-size: 1.2rem;
+            position: relative;
+            height: 120px;
+        }
+        .animate-scroll {
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            span {
+                display: block;
+                width: 20px;
+                height: 20px;
+                border-bottom: 1px solid gray;
+                border-right: 1px solid gray;
+                transform: rotate(45deg);
+                animation: animate 2s infinite;
+                margin: -10px;
+            }
+        }
+        .animate-scroll span:nth-child(2) {
+            animation-delay: -0.2s;
+        }
+
+        .animate-scroll span:nth-child(3) {
+            animation-delay: -0.4s;
+        }
+
+        @keyframes animate {
+            0% {
+                opacity: 0;
+                transform: rotate(45deg) translate(-20px, -20px);
+            }
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+                transform: rotate(45deg) translate(20px, 20px);
+            }
+        }
+    }
+}

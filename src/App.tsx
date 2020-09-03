@@ -1,29 +1,24 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Switch, Route } from 'react-router-dom';
-import { getUsers, getSingleUser } from './services/apiCall';
+import { getUsers, getSingleUser, getUserRepos } from './services/apiCall';
 
 import Navbar from './components/navbar/Navbar';
 import UsersPreview from './pages/usersPreview/UsersPreview';
-import UserProfile from './components/user-profile/UserProfile';
+import UserProfile from './pages/user-profile/UserProfile';
 
 interface Users {
 	users: Array<any>;
 	user: any;
+	repos: Array<any>;
 }
 
 class App extends Component {
 	state: Users = {
 		users: [],
-		user: {}
+		user: {},
+		repos: []
 	};
-	/* 	async componentDidMount() {
-		await getUsers().then((users) => {
-			this.setState({ users: users.data });
-		});
-
-		console.log(this.state.users);
-	} */
 
 	searchForUsers = async (value: string) => {
 		await getUsers(value).then((users) => {
@@ -38,8 +33,15 @@ class App extends Component {
 		console.log(this.state.user, 'user u tsx');
 	};
 
+	getUserRepos = async (username: string) => {
+		await getUserRepos(username).then((repo) => {
+			this.setState({ repos: repo.data });
+		});
+		console.log(this.state.repos, 'user u tsx');
+	};
+
 	render() {
-		const { users, user } = this.state;
+		const { users, user, repos } = this.state;
 		return (
 			<div className="App">
 				<Navbar />
@@ -52,7 +54,15 @@ class App extends Component {
 					<Route
 						exact
 						path="/user/:login"
-						render={(props) => <UserProfile {...props} user={user} getSingleUser={this.getSingleUser} />}
+						render={(props) => (
+							<UserProfile
+								{...props}
+								user={user}
+								repos={repos}
+								getSingleUser={this.getSingleUser}
+								getUserRepos={this.getUserRepos}
+							/>
+						)}
 					/>
 				</Switch>
 			</div>
