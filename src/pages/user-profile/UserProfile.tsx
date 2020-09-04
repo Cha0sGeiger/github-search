@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import './UserProfile.styles.scss';
 import CustomButton from '../../components/button/CustomButton';
 import { ReactComponent as UserLogo } from '../../assets/icons/users.svg';
-import { ReactComponent as Star } from '../../assets/icons/star.svg';
 
 const repos = [
 	{ id: 1, repo: 'higsum' },
@@ -25,6 +24,7 @@ const repos = [
 interface UserProps {
 	getSingleUser: (username: string) => Promise<void>;
 	getUserRepos: (username: string) => Promise<void>;
+	getSortedData: (value: boolean) => any[];
 	user: {
 		name: string;
 		avatar_url: string;
@@ -34,6 +34,7 @@ interface UserProps {
 		location: string;
 		public_repos: number;
 		email: string;
+		html_url: string;
 	};
 	match: any;
 	repos: Array<Repo>;
@@ -47,19 +48,39 @@ interface Repo {
 }
 
 class UserProfile extends Component<UserProps> {
+	state = {
+		sorting: true,
+		sortedRepos: []
+	};
 	componentDidMount() {
 		this.props.getSingleUser(this.props.match.params.login);
 		this.props.getUserRepos(this.props.match.params.login);
 	}
 
+	getSortedData = () => {
+		let sortedRepos = this.props.getSortedData(this.state.sorting);
+		this.setState({ sortedRepos: sortedRepos });
+	};
+
 	render() {
-		const { name, avatar_url, bio, followers, following, location, public_repos, email } = this.props.user;
+		const {
+			name,
+			avatar_url,
+			bio,
+			followers,
+			following,
+			location,
+			public_repos,
+			email,
+			html_url
+		} = this.props.user;
+		const { sortedRepos } = this.state;
 		return (
 			<div className="container">
 				<div className="profile-container">
 					<div className="user">
 						<div className="image-container">
-							<img src={avatar_url} />
+							<img src={avatar_url} alt="user" />
 						</div>
 						<h4>{name}</h4>
 						{location ? <h5>Location : {location}</h5> : <h5>Location : undisclosed</h5>}
@@ -71,7 +92,7 @@ class UserProfile extends Component<UserProps> {
 							<p>{following} FOLLOWING</p>
 						</div>
 						<div className="button-container">
-							<CustomButton type="link" onClick={() => console.log('text')}>
+							<CustomButton type="link primary" onClick={() => window.open(html_url, '_blank')}>
 								GITHUB
 							</CustomButton>
 						</div>
@@ -85,11 +106,11 @@ class UserProfile extends Component<UserProps> {
 							<div className="repos-list">
 								<div className="repo-heading">
 									<h4>Repos : {public_repos}</h4>
-									<CustomButton type="sort" onClick={() => console.log('sort')}>
+									<CustomButton type="sort" onClick={() => this.getSortedData()}>
 										Sort
 									</CustomButton>
 								</div>
-								{this.props.repos.map(({ id, name, description, language }) => (
+								{sortedRepos.map(({ id, name, description, language }) => (
 									<div className="repo-item" key={id}>
 										<h2>{name}</h2>
 										<p>{description}</p>

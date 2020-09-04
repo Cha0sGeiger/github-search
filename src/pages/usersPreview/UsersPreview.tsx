@@ -4,7 +4,6 @@ import './UsersPreview.styles.scss';
 import SearchInput from '../../components/search-input/Search.input';
 import CustomButton from '../../components/button/CustomButton';
 import UserCard from '../../components/user-card/UserCard';
-import GithubSearch from '../../assets/icons/github-search.png';
 
 /* const users = [
 	{

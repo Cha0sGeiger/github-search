@@ -18,7 +18,7 @@ export const getSingleUser = (username: string) => {
 
 export const getUserRepos = (username: string) => {
 	const result = axios.get(
-		`https://api.github.com/users/${username}/repos?&client_id=${process.env
+		`https://api.github.com/users/${username}/repos?per_page=15&sort=created:asc&client_id=${process.env
 			.REACT_APP_GITHUB_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
 	);
 	return result;

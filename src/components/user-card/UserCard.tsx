@@ -3,8 +3,6 @@ import { ReactComponent as Logo } from '../../assets/icons/github-logo.svg';
 import './UserCard.styles.scss';
 import { Link } from 'react-router-dom';
 
-import CustomButton from '../button/CustomButton';
-
 interface Props {
 	login: string;
 	avatar_url: string;
@@ -25,7 +23,9 @@ const UserCard: React.FC<Props> = ({ login, avatar_url, html_url }) => {
 				{/* <CustomButton type="link" onClick={() => console.log('bok')}>
 					VIEW PROFILE
 				</CustomButton> */}
-				<Link to={`/user/${login}`}>USER PROFILE</Link>
+				<Link className="link" to={`/user/${login}`}>
+					USER PROFILE
+				</Link>
 			</div>
 		</div>
 	);

@@ -40,6 +40,28 @@ class App extends Component {
 		console.log(this.state.repos, 'user u tsx');
 	};
 
+	getSortedRepos = (value: boolean) => {
+		let sortedRepos = [ ...this.state.repos ];
+		console.log(sortedRepos, 'sortedRepos');
+
+		if (value) {
+			const ascending = sortedRepos.sort(
+				(a: { name: string }, b: { name: string }) => (a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1)
+			);
+			console.log(sortedRepos, 'sortData');
+			return ascending;
+		}
+		if (!value) {
+			const descending = sortedRepos.sort(
+				(a: { login: string }, b: { login: string }) => (a.login.toLowerCase() > b.login.toLowerCase() ? 1 : -1)
+			);
+			console.log(sortedRepos, 'sortData');
+			return descending;
+		} else {
+			return this.state.repos;
+		}
+	};
+
 	render() {
 		const { users, user, repos } = this.state;
 		return (
@@ -61,6 +83,7 @@ class App extends Component {
 								repos={repos}
 								getSingleUser={this.getSingleUser}
 								getUserRepos={this.getUserRepos}
+								getSortedData={this.getSortedRepos}
 							/>
 						)}
 					/>
