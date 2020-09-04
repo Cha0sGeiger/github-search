@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 
 import './UserProfile.styles.scss';
 import CustomButton from '../../components/button/CustomButton';
@@ -24,7 +24,7 @@ const repos = [
 interface UserProps {
 	getSingleUser: (username: string) => Promise<void>;
 	getUserRepos: (username: string) => Promise<void>;
-	getSortedData: (value: boolean) => any[];
+	getSortedData: (value: string) => any[];
 	user: {
 		name: string;
 		avatar_url: string;
@@ -49,17 +49,17 @@ interface Repo {
 
 class UserProfile extends Component<UserProps> {
 	state = {
-		sorting: true,
 		sortedRepos: []
 	};
+
 	componentDidMount() {
 		this.props.getSingleUser(this.props.match.params.login);
 		this.props.getUserRepos(this.props.match.params.login);
 	}
 
-	getSortedData = () => {
-		let sortedRepos = this.props.getSortedData(this.state.sorting);
-		this.setState({ sortedRepos: sortedRepos });
+	getSortedData = (value: string) => {
+		let sortedRepos = this.props.getSortedData(value);
+		this.setState({ sortedRepos: [ ...sortedRepos ] });
 	};
 
 	render() {
@@ -106,20 +106,39 @@ class UserProfile extends Component<UserProps> {
 							<div className="repos-list">
 								<div className="repo-heading">
 									<h4>Repos : {public_repos}</h4>
-									<CustomButton type="sort" onClick={() => this.getSortedData()}>
-										Sort
+									<CustomButton type="sort" onClick={() => this.getSortedData('asc')}>
+										asc
+									</CustomButton>
+									<CustomButton type="sort" onClick={() => this.getSortedData('desc')}>
+										desc
+									</CustomButton>
+									<CustomButton type="sort" onClick={() => this.getSortedData('default')}>
+										unsorted
 									</CustomButton>
 								</div>
-								{sortedRepos.map(({ id, name, description, language }) => (
-									<div className="repo-item" key={id}>
-										<h2>{name}</h2>
-										<p>{description}</p>
-										<div className="flex-start">
-											<div className="dot" />
-											<p className="language">{language}</p>
+								{sortedRepos.length > 0 ? (
+									sortedRepos.map(({ id, name, description, language }) => (
+										<div className="repo-item" key={id}>
+											<h2>{name}</h2>
+											<p>{description}</p>
+											<div className="flex-start">
+												<div className="dot" />
+												<p className="language">{language}</p>
+											</div>
 										</div>
-									</div>
-								))}
+									))
+								) : (
+									this.props.repos.map(({ id, name, description, language }) => (
+										<div className="repo-item" key={id}>
+											<h2>{name}</h2>
+											<p>{description}</p>
+											<div className="flex-start">
+												<div className="dot" />
+												<p className="language">{language}</p>
+											</div>
+										</div>
+									))
+								)}
 							</div>
 						</div>
 						{repos.length > 3 ? (
