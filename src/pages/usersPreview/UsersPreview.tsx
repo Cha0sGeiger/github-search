@@ -4,6 +4,7 @@ import './UsersPreview.styles.scss';
 import SearchInput from '../../components/search-input/Search.input';
 import CustomButton from '../../components/button/CustomButton';
 import UserCard from '../../components/user-card/UserCard';
+import Alert from '../../components/alert/Alert';
 
 interface SearchProps {
 	users: Array<UserProps>;
@@ -18,13 +19,23 @@ interface UserProps {
 }
 class UsersPreview extends Component<SearchProps> {
 	state = {
-		search: ''
+		search: '',
+		alert: null
 	};
 
 	handleSubmit = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
-		event.preventDefault();
-		this.props.searchForUsers(this.state.search);
-		this.setState({ search: '' });
+		if (this.state.search === '') {
+			this.setAlert('This should not be empty!', 'danger');
+		} else {
+			event.preventDefault();
+			this.props.searchForUsers(this.state.search);
+			this.setState({ search: '' });
+		}
+	};
+
+	setAlert = (message: string, type: string) => {
+		this.setState({ alert: message });
+		setTimeout(() => this.setState({ alert: null }), 22000);
 	};
 
 	handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -38,6 +49,7 @@ class UsersPreview extends Component<SearchProps> {
 			<div className="container">
 				<div className="user-preview">
 					<div className="form-container">
+						<Alert message={this.state.alert} />
 						<form className="form">
 							<SearchInput
 								name="search"

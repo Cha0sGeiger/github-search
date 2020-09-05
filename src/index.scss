@@ -1,8 +1,11 @@
+@import "./style/_colors.scss";
+
 body {
 	margin: 0;
 	box-sizing: border-box;
 	background-color: whitesmoke;
-	font-family: 'Asap', 'Ubuntu', 'Cantarell', 'Fira Sans';
+	font-family: "Asap", "Ubuntu", "Cantarell", "Fira Sans";
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	background-color: $primary;
 }

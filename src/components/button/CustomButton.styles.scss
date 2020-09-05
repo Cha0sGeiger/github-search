@@ -1,3 +1,5 @@
+@import "../../style/colors";
+
 .custom-button {
     width: auto;
     height: 50px;
@@ -6,10 +8,9 @@
     line-height: 50px;
     padding: 0 35px 0 35px;
     font-size: 15px;
-    background-color: black;
     color: white;
     text-transform: uppercase;
-    font-family: "Open Sans Condensed";
+    font-family: "Asap";
     font-weight: bolder;
     border: none;
     cursor: pointer;
@@ -18,10 +19,15 @@
 }
 
 .primary {
-    background-color: #333;
+    background-color: $blue-whale;
     &:hover {
         background-color: #aaaa;
     }
+}
+
+.clear {
+    background-color: $beige;
+    color: #123123;
 }
 
 .secondary {

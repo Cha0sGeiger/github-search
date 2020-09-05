@@ -1,3 +1,5 @@
+@import "../../style/_colors.scss";
+
 $sub-color: grey;
 $main-color: black;
 
@@ -13,7 +15,7 @@ $main-color: black;
 
     .search-input {
         background: none;
-        background-color: whitesmoke;
+        background-color: $primary;
         color: $main-color;
         font-size: 18px;
         padding: 10px 10px 10px 5px;

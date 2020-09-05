@@ -12,20 +12,20 @@ interface Props {
 const UserCard: React.FC<Props> = ({ login, avatar_url, html_url }) => {
 	return (
 		<div className="user-card">
-			<div className="user-info">
+			<div className="user-image">
 				<img src={avatar_url} alt="user" />
-				<div>
-					<h4>{login}</h4>
-					<Logo className="logo-small" onClick={() => window.open(html_url, '_blank')} />
-				</div>
+				<Logo className="logo-small" onClick={() => window.open(html_url, '_blank')} />
 			</div>
-			<div className="github-link">
-				{/* <CustomButton type="link" onClick={() => console.log('bok')}>
-					VIEW PROFILE
-				</CustomButton> */}
-				<Link className="link" to={`/user/${login}`}>
-					USER PROFILE
-				</Link>
+			<div className="user-info">
+				<div className="username">
+					<h5>Username:</h5>
+					<h3>{login}</h3>
+				</div>
+				<div className="link-container">
+					<Link className="link" to={`/user/${login}`}>
+						PROFILE
+					</Link>
+				</div>
 			</div>
 		</div>
 	);
