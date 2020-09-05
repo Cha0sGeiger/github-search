@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './UserProfile.styles.scss';
 import CustomButton from '../../components/button/CustomButton';
 import { ReactComponent as UserLogo } from '../../assets/icons/users.svg';
+import { ReactComponent as Email } from '../../assets/icons/email-black.svg';
 
 interface UserProps {
 	getSingleUser: (username: string) => Promise<void>;
@@ -28,6 +29,7 @@ interface Repo {
 	name: string;
 	description: string;
 	language: string;
+	html_url: string;
 }
 
 class UserProfile extends Component<UserProps> {
@@ -51,6 +53,7 @@ class UserProfile extends Component<UserProps> {
 	};
 
 	render() {
+		console.log(this.props.repos, 'repos');
 		const {
 			name,
 			avatar_url,
@@ -72,11 +75,15 @@ class UserProfile extends Component<UserProps> {
 						</div>
 						<h4>{name}</h4>
 						{location ? <h5>Location : {location}</h5> : <h5>Location : undisclosed</h5>}
-						<p>email : {email}</p>
+						<div className="email">
+							<Email className="logo" />
+							{email ? <p>{email}</p> : <p>UNDISCLOSED</p>}
+						</div>
+
 						<div className="following-information-container">
 							<UserLogo />
 							<p>{followers} FOLLOWERS</p>
-							<p> - </p>
+							<p>-</p>
 							<p>{following} FOLLOWING</p>
 						</div>
 						<div className="button-container">
@@ -107,9 +114,11 @@ class UserProfile extends Component<UserProps> {
 									</div>
 								</div>
 								{sortedRepos.length > 0 ? (
-									sortedRepos.map(({ id, name, description, language }) => (
+									sortedRepos.map(({ id, name, description, language, html_url }) => (
 										<div className="repo-item" key={id}>
-											<h2>{name}</h2>
+											<h2>
+												<a href={html_url}>{name}</a>
+											</h2>
 											<p>{description}</p>
 											<div className="flex-start">
 												<div className="dot" />
@@ -118,10 +127,13 @@ class UserProfile extends Component<UserProps> {
 										</div>
 									))
 								) : (
-									this.props.repos.map(({ id, name, description, language }) => (
+									this.props.repos.map(({ id, name, description, language, html_url }) => (
 										<div className="repo-item" key={id}>
-											<h2>{name}</h2>
+											<h2>
+												<a href={html_url}>{name}</a>
+											</h2>
 											<p>{description}</p>
+
 											<div className="flex-start">
 												<div className="dot" />
 												<p className="language">{language}</p>

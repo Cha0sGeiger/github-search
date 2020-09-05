@@ -72,7 +72,7 @@ class App extends Component {
 		}
 		const cachedRepos = localStorage.getItem(value);
 		if (cachedRepos) {
-			this.setState({ users: JSON.parse(cachedRepos) });
+			this.setState({ repos: JSON.parse(cachedRepos) });
 		} else {
 			this.getUserRepos(value);
 		}
