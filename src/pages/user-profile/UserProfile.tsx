@@ -1,29 +1,12 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 
 import './UserProfile.styles.scss';
 import CustomButton from '../../components/button/CustomButton';
 import { ReactComponent as UserLogo } from '../../assets/icons/users.svg';
 
-const repos = [
-	{ id: 1, repo: 'higsum' },
-	{ id: 2, repo: 'pollock' },
-	{ id: 3, repo: 'higsum' },
-	{ id: 4, repo: 'pollock' },
-	{ id: 5, repo: 'higsum' },
-	{ id: 7, repo: 'pollock' },
-	{ id: 77, repo: 'higsum' },
-	{ id: 57, repo: 'pollock' },
-	{ id: 32, repo: 'higsum' },
-	{ id: 22, repo: 'pollock' },
-	{ id: 11, repo: 'higsum' },
-	{ id: 23, repo: 'pollock' },
-	{ id: 112, repo: 'higsum' },
-	{ id: 234, repo: 'pollock' }
-];
-
 interface UserProps {
 	getSingleUser: (username: string) => Promise<void>;
-	getUserRepos: (username: string) => Promise<void>;
+	getUserReposCheck: (username: string) => any;
 	getSortedData: (value: string) => any[];
 	user: {
 		name: string;
@@ -54,12 +37,17 @@ class UserProfile extends Component<UserProps> {
 
 	componentDidMount() {
 		this.props.getSingleUser(this.props.match.params.login);
-		this.props.getUserRepos(this.props.match.params.login);
+		this.props.getUserReposCheck(this.props.match.params.login);
 	}
 
 	getSortedData = (value: string) => {
 		let sortedRepos = this.props.getSortedData(value);
 		this.setState({ sortedRepos: [ ...sortedRepos ] });
+	};
+
+	addUserToFavorite = (user: any) => {
+		const favoriteUser = [ ...user ];
+		console.log(favoriteUser);
 	};
 
 	render() {
@@ -106,15 +94,17 @@ class UserProfile extends Component<UserProps> {
 							<div className="repos-list">
 								<div className="repo-heading">
 									<h4>Repos : {public_repos}</h4>
-									<CustomButton type="sort" onClick={() => this.getSortedData('asc')}>
-										asc
-									</CustomButton>
-									<CustomButton type="sort" onClick={() => this.getSortedData('desc')}>
-										desc
-									</CustomButton>
-									<CustomButton type="sort" onClick={() => this.getSortedData('default')}>
-										unsorted
-									</CustomButton>
+									<div className="button-container">
+										<CustomButton type="small" onClick={() => this.getSortedData('asc')}>
+											asc
+										</CustomButton>
+										<CustomButton type="small" onClick={() => this.getSortedData('desc')}>
+											desc
+										</CustomButton>
+										<CustomButton type="small" onClick={() => this.getSortedData('default')}>
+											last
+										</CustomButton>
+									</div>
 								</div>
 								{sortedRepos.length > 0 ? (
 									sortedRepos.map(({ id, name, description, language }) => (
@@ -141,10 +131,10 @@ class UserProfile extends Component<UserProps> {
 								)}
 							</div>
 						</div>
-						{repos.length > 3 ? (
+						{this.props.repos.length > 3 ? (
 							<div className="scroll-box">
 								<div>
-									<div>Scroll on repo list</div>
+									<p className="small-info">SCROLL ON REPO LIST</p>
 									<div className="animate-scroll">
 										<span />
 										<span />

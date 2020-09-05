@@ -8,6 +8,7 @@ import UsersPreview from './pages/usersPreview/UsersPreview';
 import UserProfile from './pages/user-profile/UserProfile';
 
 interface Users {
+	query: string;
 	users: Array<any>;
 	user: any;
 	repos: Array<any>;
@@ -15,16 +16,20 @@ interface Users {
 
 class App extends Component {
 	state: Users = {
+		query: '',
 		users: [],
 		user: {},
 		repos: []
 	};
 
+	// SEARH FOR USERS
 	searchForUsers = async (value: string) => {
 		await getUsers(value).then((users) => {
 			this.setState({ users: users.data.items });
 		});
 	};
+
+	// GET SINGLE USER
 
 	getSingleUser = async (username: string) => {
 		await getSingleUser(username).then((user) => {
@@ -33,30 +38,48 @@ class App extends Component {
 		console.log(this.state.user, 'user u tsx');
 	};
 
+	// GET SINGLE USER REPO
 	getUserRepos = async (username: string) => {
+		console.log('palio se ');
 		await getUserRepos(username).then((repo) => {
 			this.setState({ repos: repo.data });
+			this.onSetResult(repo.data, username);
 		});
-		console.log(this.state.repos, 'user u tsx');
 	};
 
+	// SORTING REPOS
 	getSortedRepos = (value: string) => {
-		console.log('print prva vrijednost');
 		if (value === 'asc') {
 			const ascending = [ ...this.state.repos ].sort(
 				(a: { name: string }, b: { name: string }) => (a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1)
 			);
 			return ascending;
 		} else if (value === 'desc') {
-			console.log('drg');
 			const descending = [ ...this.state.repos ].sort(
 				(a: { name: string }, b: { name: string }) => (b.name.toLowerCase() > a.name.toLowerCase() ? 1 : -1)
 			);
-			console.log(descending, 'desce');
 			return descending;
 		} else {
 			return [ ...this.state.repos ];
 		}
+	};
+
+	// CACHING OR GETTING USER  REPOS BY PROMISE
+	getUserReposCheck = (value: string) => {
+		console.log(value, 'value');
+		if (value === '') {
+			return;
+		}
+		const cachedRepos = localStorage.getItem(value);
+		if (cachedRepos) {
+			this.setState({ users: JSON.parse(cachedRepos) });
+		} else {
+			this.getUserRepos(value);
+		}
+	};
+
+	onSetResult = (result: object, key: string) => {
+		localStorage.setItem(key, JSON.stringify(result));
 	};
 
 	render() {
@@ -79,7 +102,7 @@ class App extends Component {
 								user={user}
 								repos={repos}
 								getSingleUser={this.getSingleUser}
-								getUserRepos={this.getUserRepos}
+								getUserReposCheck={this.getUserReposCheck}
 								getSortedData={this.getSortedRepos}
 							/>
 						)}

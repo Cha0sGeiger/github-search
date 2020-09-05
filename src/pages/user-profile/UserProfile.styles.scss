@@ -65,7 +65,8 @@
             flex-flow: column;
             width: 100%;
             height: 720px;
-            overflow-x: scroll;
+            overflow-y: scroll;
+            overflow-x: hidden;
 
             .information {
                 padding: 20px 5px 5px 10px;
@@ -88,6 +89,9 @@
                 .repo-heading {
                     display: flex;
                     justify-content: space-between;
+                    .button-container {
+                        display: flex;
+                    }
                 }
                 .repo-item {
                     border-bottom: 1px solid gray;
@@ -130,6 +134,10 @@
             font-size: 1.2rem;
             position: relative;
             height: 120px;
+            .small-info {
+                font-size: 0.85rem;
+                letter-spacing: 2px;
+            }
         }
         .animate-scroll {
             position: absolute;

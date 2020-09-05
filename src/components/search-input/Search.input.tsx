@@ -9,7 +9,7 @@ interface Props {
 	type: string;
 }
 
-const SearchInput: React.FC<Props> = ({ label, handleChange, name, type, value }) => {
+const SearchInput: React.FC<Props> = ({ label, handleChange, name, value }) => {
 	return (
 		<div className="group">
 			<input className="search-input" onChange={handleChange} value={value} name={name} />
