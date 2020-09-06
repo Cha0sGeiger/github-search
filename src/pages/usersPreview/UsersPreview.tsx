@@ -35,7 +35,7 @@ class UsersPreview extends Component<SearchProps> {
 
 	setAlert = (message: string, type: string) => {
 		this.setState({ alert: message });
-		setTimeout(() => this.setState({ alert: null }), 22000);
+		setTimeout(() => this.setState({ alert: null }), 5000);
 	};
 
 	handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
