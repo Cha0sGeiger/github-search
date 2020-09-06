@@ -1,0 +1,31 @@
+@import "../../style/_variables.scss";
+
+.container {
+    .info-block {
+        width: 80%;
+        margin: 50px auto;
+        padding: 25px;
+        box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.22);
+        transition: 0.3s;
+        .block {
+            margin-right: 100px;
+            margin-left: 100px;
+            p {
+                font-family: "Molengo";
+                font-size: 1.1rem;
+            }
+            .profile-example {
+                color: #fff;
+                font-size: 0.9rem;
+                text-align: center;
+                padding: 9px;
+                background-color: #2a363b;
+                border-radius: 9px;
+            }
+        }
+    }
+}
+
+.info-block:hover {
+    box-shadow: 0 7px 13px 0 rgba(0, 0, 0, 0.2);
+}

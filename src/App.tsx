@@ -6,6 +6,7 @@ import { getUsers, getSingleUser, getUserRepos } from './services/apiCall';
 import Navbar from './components/navbar/Navbar';
 import UsersPreview from './pages/usersPreview/UsersPreview';
 import UserProfile from './pages/user-profile/UserProfile';
+import AboutCard from './pages/about/AboutCard';
 
 interface Users {
 	query: string;
@@ -35,12 +36,10 @@ class App extends Component {
 		await getSingleUser(username).then((user) => {
 			this.setState({ user: user.data });
 		});
-		console.log(this.state.user, 'user u tsx');
 	};
 
 	// GET SINGLE USER REPO
 	getUserRepos = async (username: string) => {
-		console.log('palio se ');
 		await getUserRepos(username).then((repo) => {
 			this.setState({ repos: repo.data });
 			this.onSetResult(repo.data, username);
@@ -66,7 +65,6 @@ class App extends Component {
 
 	// CACHING OR GETTING USER  REPOS BY PROMISE
 	getUserReposCheck = (value: string) => {
-		console.log(value, 'value');
 		if (value === '') {
 			return;
 		}
@@ -107,6 +105,7 @@ class App extends Component {
 							/>
 						)}
 					/>
+					<Route exact path="/about" component={AboutCard} />
 				</Switch>
 			</div>
 		);

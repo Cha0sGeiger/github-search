@@ -1,0 +1,15 @@
+{
+	"searchingInfo": {
+		"search": "Search github users by inserting desired username and pressing search button."
+	},
+	"queryResult": {
+		"query": "Result will display one or more users.",
+		"profile": "Profile user card contains username, profile image and link to more profile information by pressing",
+		"github": "User card also contains small github icon which opens in a new tab github page profile. Icon can be seen here :"
+	},
+	"profilePage": {
+		"information": "General profile information can be seen on the right and repo list can be seen on the left.",
+		"repos": "Repo list shows by default last created repos but it can be sorted by alphabet by pressing asc or desc button.",
+		"repo_item": "By pressing repo name tab will open with repo on Github page."
+	}
+}

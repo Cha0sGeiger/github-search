@@ -28,7 +28,6 @@ class UsersPreview extends Component<SearchProps> {
 			this.setAlert('This should not be empty!', 'danger');
 		} else {
 			event.preventDefault();
-			console.log('traze usere');
 			this.props.searchForUsers(this.state.search);
 			this.setState({ search: '' });
 		}
@@ -68,11 +67,9 @@ class UsersPreview extends Component<SearchProps> {
 						</div>
 					</div>
 					<div className="users-container">
-						{this.props.users !== undefined ? (
-							this.props.users.map(({ id, login, avatar_url, html_url }) => (
-								<UserCard key={id} login={login} avatar_url={avatar_url} html_url={html_url} />
-							))
-						) : null}
+						{this.props.users.map(({ id, login, avatar_url, html_url }) => (
+							<UserCard key={id} login={login} avatar_url={avatar_url} html_url={html_url} />
+						))}
 					</div>
 				</div>
 			</div>
