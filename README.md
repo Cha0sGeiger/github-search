@@ -30,9 +30,6 @@
 4. If we expect mobile users this app should be upgraded to be mobile friendly. This is lower on priority list because searching, cloning or general git repo options aren't 
    generaly used on mobile devices. 
 
-
-## CODE USED IN APP
-
    
 
    
