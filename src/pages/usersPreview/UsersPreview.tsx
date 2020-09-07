@@ -25,7 +25,7 @@ class UsersPreview extends Component<SearchProps> {
 
 	handleSubmit = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
 		if (this.state.search === '') {
-			this.setAlert('This should not be empty!', 'danger');
+			this.setAlert('! This should not be empty');
 		} else {
 			event.preventDefault();
 			this.props.searchForUsers(this.state.search);
@@ -33,7 +33,7 @@ class UsersPreview extends Component<SearchProps> {
 		}
 	};
 
-	setAlert = (message: string, type: string) => {
+	setAlert = (message: string) => {
 		this.setState({ alert: message });
 		setTimeout(() => this.setState({ alert: null }), 5000);
 	};
