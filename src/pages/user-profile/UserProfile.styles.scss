@@ -53,13 +53,16 @@
                 height: 20px;
                 width: 20px;
             }
-            p {
-                margin: 19px;
-            }
         }
         .following-information-container {
             display: flex;
             justify-content: center;
+            .user-logo {
+                display: block;
+                margin: auto 0;
+                height: 22px;
+                width: 22px;
+            }
             p {
                 margin: 10px;
             }

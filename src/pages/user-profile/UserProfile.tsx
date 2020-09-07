@@ -82,7 +82,7 @@ class UserProfile extends Component<UserProps> {
 						</div>
 
 						<div className="following-information-container">
-							<UserLogo />
+							<UserLogo className="user-logo" />
 							<p>{followers} FOLLOWERS</p>
 							<p>-</p>
 							<p>{following} FOLLOWING</p>

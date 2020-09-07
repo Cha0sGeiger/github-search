@@ -57,7 +57,7 @@ class UsersPreview extends Component<SearchProps> {
 								type="search"
 								value={this.state.search}
 								handleChange={this.handleChange}
-								label="Search for User"
+								label="Search for user"
 							/>
 						</form>
 						<div className="button">
