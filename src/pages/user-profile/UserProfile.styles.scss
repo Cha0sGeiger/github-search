@@ -31,7 +31,7 @@
         h4 {
             font-family: "Molengo";
             font-size: 1.5rem;
-            color: gray;
+            color: $gray;
             text-align: center;
         }
         h5 {
@@ -74,7 +74,6 @@
         width: 50%;
         display: flex;
         flex-flow: column;
-        overflow: hidden;
         height: 100%;
         .repos-container {
             display: flex;
@@ -89,7 +88,7 @@
             .information {
                 padding: 20px 5px 5px 10px;
                 margin-bottom: 20px;
-                border-bottom: 1px solid gray;
+                border-bottom: 1px solid $gray;
                 h4 {
                     color: #001f3f;
                     font-size: 0.9rem;
@@ -112,8 +111,13 @@
                     }
                 }
                 .repo-item {
-                    border-bottom: 1px solid gray;
+                    border-bottom: 1px solid $gray;
                     padding-bottom: 14px;
+                    h2 {
+                        a {
+                            color: $gray;
+                        }
+                    }
                     p {
                         margin-left: 15px;
                     }
@@ -142,55 +146,6 @@
         }
         .repos-container {
             -ms-overflow-style: none;
-        }
-        .scroll-box {
-            margin: 0 auto;
-            padding-top: 30px;
-            font-size: 1.2rem;
-            position: relative;
-            height: 120px;
-            .small-info {
-                font-size: 0.85rem;
-                letter-spacing: 2px;
-            }
-        }
-        .animate-scroll {
-            position: absolute;
-            bottom: 10%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            span {
-                display: block;
-                width: 20px;
-                height: 20px;
-                border-bottom: 1px solid gray;
-                border-right: 1px solid gray;
-                transform: rotate(45deg);
-                animation: animate 2s infinite;
-                margin: -10px;
-            }
-        }
-        .animate-scroll span:nth-child(2) {
-            animation-delay: -0.2s;
-        }
-
-        .animate-scroll span:nth-child(3) {
-            animation-delay: -0.4s;
-        }
-
-        @keyframes animate {
-            0% {
-                opacity: 0;
-                transform: rotate(45deg) translate(-20px, -20px);
-            }
-            50% {
-                opacity: 1;
-            }
-
-            100% {
-                opacity: 0;
-                transform: rotate(45deg) translate(20px, 20px);
-            }
         }
     }
 }

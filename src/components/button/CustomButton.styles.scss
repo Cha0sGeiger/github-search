@@ -1,4 +1,4 @@
-@import "../../style/colors";
+@import "../../style/_colors";
 
 .custom-button {
     width: auto;
@@ -8,7 +8,7 @@
     line-height: 50px;
     padding: 0 35px 0 35px;
     font-size: 15px;
-    color: white;
+    color: $white;
     text-transform: uppercase;
     font-family: "Asap";
     font-weight: bolder;
@@ -21,7 +21,7 @@
 .primary {
     background-color: $blue-whale;
     &:hover {
-        background-color: #aaaa;
+        background-color: $gray;
     }
 }
 
@@ -49,9 +49,10 @@
     align-items: center;
     outline-color: #fc8d59;
     &:hover {
-        background-color: gray;
+        background-color: $gray;
     }
 }
 .small:active {
-    background-color: green;
+    background-color: $beige;
+    color: $black;
 }

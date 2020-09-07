@@ -20,7 +20,7 @@
         width: 100%;
         border: none;
         border-radius: 0;
-        border-bottom: 1px solid $grey;
+        border-bottom: 1px solid $gray;
         margin: 25px 0;
 
         &:focus {
@@ -33,7 +33,7 @@
     }
 
     .search-input-label {
-        color: $grey;
+        color: $gray;
         font-size: 16px;
         font-weight: normal;
         position: absolute;

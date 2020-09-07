@@ -4,6 +4,7 @@ import './UserProfile.styles.scss';
 import CustomButton from '../../components/button/CustomButton';
 import { ReactComponent as UserLogo } from '../../assets/icons/users.svg';
 import { ReactComponent as Email } from '../../assets/icons/email-black.svg';
+import ScrollAnimation from '../../components/scroll-box/ScrollAnimation';
 
 interface UserProps {
 	getSingleUser: (username: string) => Promise<void>;
@@ -143,18 +144,7 @@ class UserProfile extends Component<UserProps> {
 								)}
 							</div>
 						</div>
-						{this.props.repos.length > 3 ? (
-							<div className="scroll-box">
-								<div>
-									<p className="small-info">SCROLL ON REPO LIST</p>
-									<div className="animate-scroll">
-										<span />
-										<span />
-										<span />
-									</div>
-								</div>
-							</div>
-						) : null}
+						{this.props.repos.length > 3 ? <ScrollAnimation /> : null}
 					</div>
 				</div>
 			</div>
