@@ -45,7 +45,6 @@ class UsersPreview extends Component<SearchProps> {
 	};
 
 	render() {
-		console.log(this.props.users, 'props users');
 		return (
 			<div className="container">
 				<div className="user-preview">

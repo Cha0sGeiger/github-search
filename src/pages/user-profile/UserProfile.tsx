@@ -48,11 +48,6 @@ class UserProfile extends Component<UserProps> {
 		this.setState({ sortedRepos: [ ...sortedRepos ] });
 	};
 
-	addUserToFavorite = (user: any) => {
-		const favoriteUser = [ ...user ];
-		console.log(favoriteUser);
-	};
-
 	render() {
 		console.log(this.props.repos, 'repos');
 		const {
